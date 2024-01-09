@@ -5,6 +5,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LokasiController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,12 +22,10 @@ use App\Http\Controllers\BeritaController;
 Route::get('/', function () {
     return view('landing');
 });
+Route::get('/home', function () {
+    return view('home');
+});
 
-// Route::get('/login', function () {
-//     return view('Pengguna.login');
-// });
-
-// Route::post('/postlogin', 'LoginController@postlogin')-> name('postlogin');
 
 
 Route::get('/dashboard', [DashboardController::class, 'index']);
@@ -54,6 +54,8 @@ Route::post('/berita/store', [BeritaController::class, 'store']);
 Route::get('/berita/edit/{id}', [BeritaController::class, 'edit']);
 Route::put('/berita/update/{id}', [BeritaController::class, 'update']);
 Route::delete('/berita/destroy/{id}', [BeritaController::class, 'destroy']);
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
